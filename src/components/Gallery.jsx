@@ -1,22 +1,11 @@
 import Reveal from "./Reveal";
 import { useLanguage } from "../context/LanguageContext";
-import {
-  cdnImage,
-  portfolioImage,
-  GALLERY_IMAGES,
-  GALLERY_LOCAL_IMAGES,
-} from "../data/images";
+import { portfolioImage, GALLERY_IMAGES } from "../data/images";
 
-const GALLERY_SOURCES = [
-  ...GALLERY_IMAGES.map((filename) => ({
-    key: filename,
-    src: cdnImage(filename, { w: 800, h: 600 }),
-  })),
-  ...GALLERY_LOCAL_IMAGES.map((filename) => ({
-    key: filename,
-    src: portfolioImage(filename),
-  })),
-];
+const GALLERY_SOURCES = GALLERY_IMAGES.map((filename) => ({
+  key: filename,
+  src: portfolioImage(filename),
+}));
 
 export default function Gallery() {
   const { t } = useLanguage();

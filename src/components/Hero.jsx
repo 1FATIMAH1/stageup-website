@@ -1,5 +1,5 @@
 import { useLanguage } from "../context/LanguageContext";
-import { cdnImage, HERO_IMAGE } from "../data/images";
+import { portfolioImage, HERO_IMAGE, HERO_IMAGE_FALLBACK } from "../data/images";
 import Reveal from "./Reveal";
 
 export default function Hero() {
@@ -13,7 +13,11 @@ export default function Hero() {
     >
       <div className="absolute inset-0">
         <img
-          src={cdnImage(HERO_IMAGE, { w: 1920, h: 1080 })}
+          src={portfolioImage(HERO_IMAGE)}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = portfolioImage(HERO_IMAGE_FALLBACK);
+          }}
           alt={hero.productionLabel}
           className="h-full w-full object-cover object-right brightness-110 rtl:object-left"
         />
